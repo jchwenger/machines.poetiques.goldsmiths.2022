@@ -16,7 +16,8 @@ function setup() {
   // BEWARE! The computation for this list grows very, very fast,
   // and your browser will quickly run out of resources
   // (also, you may have to increase the canvas size)
-  a = ["entrance", "roof", "basement", "staircase"];
+  a = ["hello", "world", "goodbye", "universe"];
+  // a = ["entrance", "roof", "basement", "staircase"];
 
   // here three choices for permutations
   // (use only one at a time!)
