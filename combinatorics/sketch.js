@@ -54,7 +54,7 @@ function draw() {
 
   // ----------------------------------------
   // 1) Shuffling
-  for (let i = 0; i < p.length;i++) {
+  for (let i = 0; i < p.length; i++) {
       text(p[i].join(', '), 10, 30 + i*30);
   }
 
