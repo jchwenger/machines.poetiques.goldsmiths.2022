@@ -1,6 +1,6 @@
 
 // define our variables
-let a;
+let a, p;
 let x,y,z,t,e,f;
 let s1;
 let s2;
@@ -21,9 +21,9 @@ function setup() {
 
   // here three choices for permutations
   // (use only one at a time!)
-  const p = permutator(a); // all permuations: shuffling! Order matters!
-  // const p = combinator(a); //  all combinations (sets of various lengths). Order does not matter!
-  // const p = k_combinator(a, 2); //  all k combinations (sets of length k). Order does not matter!
+  p = permutator(a); // all permuations: shuffling! Order matters!
+  // p = combinator(a); //  all combinations (sets of various lengths). Order does not matter!
+  // p = k_combinator(a, 2); //  all k combinations (sets of length k). Order does not matter!
 
   // ----------------------------------------
   // 2) Slots / Reservoirs
