@@ -7,7 +7,7 @@ Iris Colomb & Jérémie Wenger
 
 ### Combinatorics
 
-For more information, pease see the [sketch](combinatorics/sketch.js)[.](https://docs.google.com/presentation/d/1PesszfRm7_NBOD0qgP8QMgdDadXL1RbRLubUsQ6iPLI/edit?usp=sharing)
+For more information, pease see the [sketch](combinatorics/sketch.js).
 
 ---
 
