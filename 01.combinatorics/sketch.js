@@ -1,16 +1,9 @@
-
 // define our variables
 let a, p;
-let x,y,z,t,e,f;
-let s1;
-let s2;
 
 function setup() {
 
   createCanvas(500, 800);
-
-  // ----------------------------------------
-  // 1) Shuffling
 
   // material for permutations and combinations
   // BEWARE! The computation for this list grows very, very fast,
@@ -24,23 +17,6 @@ function setup() {
   p = permutator(a); // all permuations: shuffling! Order matters!
   // p = combinator(a); //  all combinations (sets of various lengths). Order does not matter!
   // p = k_combinator(a, 2); //  all k combinations (sets of length k). Order does not matter!
-
-  // ----------------------------------------
-  // 2) Slots / Reservoirs
-
-  // our sentence
-  s1 = "Introducing textual systems through experimental French poetry";
-
-  // reservoirs/slots
-  y = ["Introducing"];
-  z = ["textual"];
-  t = ["systems"];
-  e = ["experimental"];
-  f = ["French"];
-
-  // this is a javascript formatted string, aka template literal
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
-  s2 = `${randEl(y)} ${randEl(z)} ${randEl(t)} through ${randEl(e)} ${randEl(f)} poetry`;
 
 }
 
@@ -58,33 +34,11 @@ function draw() {
       text(p[i].join(', '), 10, 30 + i*30);
   }
 
-  // ----------------------------------------
-  // 2) Slots / Reservoirs
-  // our sentences: the original and the modified one (see keyPressed)
-  // text(s1, 10, 30, 300);
-  // text(s2, 10, 200, 300);
-
-}
-
-// each time we press space we get a new random sentence (see randEl)
-function keyPressed() {
-  if (key === ' ') {
-    s2 = `${randEl(y)} ${randEl(z)} ${randEl(t)} through ${randEl(e)} ${randEl(f)} poetry`;
-  }
 }
 
 // ----------------------------------------
 // THE UNDERBELLY
 // ----------------------------------------
-
-// ----------------------------------------
-// https://stackoverflow.com/a/5915122
-// get one random element from an array
-
-function randEl(arr) {
-  return arr[Math.floor(Math.random()*arr.length)];
-}
-
 
 // ----------------------------------------
 // Permutations
