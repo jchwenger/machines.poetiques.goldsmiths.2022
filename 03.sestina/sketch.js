@@ -114,6 +114,7 @@ function drawScheme(scheme, x, y) {
     const pointsSpan = abs(firstPoint - secondPoint); // middle position between start & end points
     const centre_y = Math.min(firstPoint, secondPoint) + pointsSpan/2 - textAdjustment;
     const arc_w_h = pointsSpan; // drawing circles: height == width
+    const triCentre_y = secondPoint - textAdjustment; // the centre of the arrowhead
 
     // using modulo logic to alternate left and right arcs
     if (i % 2 == 0) { // drawing on the right
@@ -124,7 +125,6 @@ function drawScheme(scheme, x, y) {
       stop = HALF_PI;
       // draw the arrow (a triangle) pointing left
       fill(0);
-      triCentre_y = Math.min(firstPoint, secondPoint) - textAdjustment;
       const tri_1_x = centre_x - 4;
       const tri_1_y = triCentre_y;
       const tri_2_x = centre_x;
@@ -140,9 +140,8 @@ function drawScheme(scheme, x, y) {
       // circle(centre_x, centre_y, 10);
       start = HALF_PI;
       stop = -HALF_PI;
-      // draw the arrow (a triangle) pointing left
+      // draw the arrow (a triangle) pointing right
       fill(0);
-      triCentre_y = Math.max(firstPoint, secondPoint) - textAdjustment;
       const tri_1_x = centre_x + 4;
       const tri_1_y = triCentre_y;
       const tri_2_x = centre_x;
