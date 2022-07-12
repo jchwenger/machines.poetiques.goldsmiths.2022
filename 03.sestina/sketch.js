@@ -76,17 +76,28 @@ function makeSestina(arr, scheme) {
   return sestinaMatrix
 }
 
+// sort an array but return the indices required for sorting (argsort)
+// https://stackoverflow.com/a/46622523
+// array trick: https://stackoverflow.com/a/46622523
+const argSort = (arr) => [...Array(arr.length).keys()]
+  .map((item, index) => [arr[index], item]) // add the args to sort by
+  .sort(([arg1], [arg2]) => arg2 - arg1) // sort by the args
+  .map(([, item]) => item) // extract the sorted items
+  .reverse(); // sort ascending
+
 function drawScheme(scheme, x, y) {
 
   line(10, y - lineHeight, (longestWidth + lineHeight) * scheme.length, y - lineHeight);
   text(`scheme:`, 10, y);
   text(`[${scheme}]`, 10, y + lineHeight);
 
+  const schemeArgsort = argSort(scheme);
+
   // draw the order of the algorithm & store the Y positions
   let schemeYs = [];
   for (let i = 0; i < scheme.length; i++) {
-    const schemeY = y + lineHeight * scheme[i];
-    text(i + 1, x, schemeY); // draw number at position indicated by scheme
+    const schemeY = y + lineHeight * i;
+    text(schemeArgsort[i] + 1, x, schemeY); // draw the order of steps of the scheme
     schemeYs.push(schemeY);
   }
 
@@ -98,8 +109,8 @@ function drawScheme(scheme, x, y) {
   // draw the arrows
   for (let i = 0; i < scheme.length - 1; i++) {
 
-    const firstPoint = schemeYs[i];
-    const secondPoint = schemeYs[i + 1];
+    const firstPoint = schemeYs[scheme[i]];
+    const secondPoint = schemeYs[scheme[i + 1]];
     const pointsSpan = abs(firstPoint - secondPoint); // middle position between start & end points
     const centre_y = Math.min(firstPoint, secondPoint) + pointsSpan/2 - textAdjustment;
     const arc_w_h = pointsSpan; // drawing circles: height == width
