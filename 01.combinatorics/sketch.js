@@ -18,15 +18,16 @@ function setup() {
   // p = combinator(a); //  all combinations (sets of various lengths). Order does not matter!
   // p = k_combinator(a, 2); //  all k combinations (sets of length k). Order does not matter!
 
+  // we prepare our canvas, text size, we don't cut words at the end of lines, and select a font
+  textSize(25);
+  textWrap(WORD);
+  textFont('Helvetica');
+
 }
 
 function draw() {
 
-  // we prepare our canvas, text size, we don't cut words at the end of lines, and select a font
   background(255);
-  textSize(25);
-  textWrap(WORD);
-  textFont('Helvetica');
 
   // ----------------------------------------
   // 1) Shuffling
