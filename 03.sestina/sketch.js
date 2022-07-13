@@ -5,15 +5,36 @@ let rhymeWords, sestinaMatrix, scheme;
 let longestWidth;
 let lineHeight;
 
+let conditionOne, conditionTwp;
+
 function setup() {
 
   createCanvas(1500, 800);
 
+  // rhymeWords & scheme must have the same number of elements
   rhymeWords = ["enters", "nail", "soul", "rod", "uncle", "room"];
+  // each position must appear exactly once!
+  scheme = [5, 0, 4, 1, 3, 2];
 
-  scheme = [5, 0, 4, 1, 3, 2]; // each position must appear exactly once!
+  // I am using the Ternary (Conditional) Operator syntax to establish the
+  // conditions, it works like so:
+  // condition ? [result if true] : [result if false]
+  // that's the right-hand side of the equation, and I assign it to the variables
+
+  // first condition
+  conditionOne = rhymeWords.length === scheme.length ? true : false
+  // console.log(`condition two: ${conditionOne}`);
+
+  // second condition: does our scheme contain all elements?
+  // to check that, we turn the array into a set, which only contains
+  // unique elements, and compare its size to the length of our array!
+  // https://stackoverflow.com/a/28965567
+  // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
+  conditionTwo = scheme.length === (new Set(scheme)).size ? true : false
+  // console.log(`condition two: ${conditionTwo}`);
 
   sestinaMatrix = makeSestina(rhymeWords, scheme);
+  // console.log(sestinaMatrix);
 
   // for (let stanza of sestinaMatrix) {
   //   console.log(stanza);
@@ -21,7 +42,7 @@ function setup() {
 
   textSize(25);
   textWrap(WORD);
-  textFont('Helvetica');
+  textFont("Helvetica");
 
   // https://stackoverflow.com/a/46125820
   const longest = rhymeWords.reduce((curr, next) => curr.length > next.length ? curr : next, "");
@@ -39,42 +60,76 @@ function draw() {
   // we prepare our canvas, text size, we don't cut words at the end of lines, and select rhymeWords font
   background(255);
 
-  text(`A Sestina Generator`, 10, lineHeight);
+  drawTitle();
 
-  for (let i = 0; i < sestinaMatrix.length; i++) {
-    text(i+1, 10 + i*(longestWidth + lineHeight), lineHeight * 2);
-    for (let j = 0; j < sestinaMatrix.length; j++) {
-      text(sestinaMatrix[i][j], 10 + i*(longestWidth + lineHeight), lineHeight * 3 + j*lineHeight);
+  if (conditionOne && conditionTwo) {
+    // draw the sestina stanzas
+    for (let i = 0; i < sestinaMatrix.length; i++) {
+      text(i+1, 10 + i*(longestWidth + lineHeight), lineHeight * 3);
+      for (let j = 0; j < sestinaMatrix.length; j++) {
+        text(sestinaMatrix[i][j], 10 + i*(longestWidth + lineHeight), lineHeight * 4 + j*lineHeight);
+      }
     }
+    // illustrating the algorithm
+    drawScheme(scheme, ((longestWidth + lineHeight) * scheme.length)/2, scheme.length * lineHeight + lineHeight * 5);
+  } else if (!conditionOne) {
+    errorOne();
+  } else if (!conditionTwo) {
+    errorTwo()
   }
 
-  // illustrating the algorithm
-  drawScheme(scheme, ((longestWidth + lineHeight) * scheme.length)/2, scheme.length * lineHeight + lineHeight * 4);
+}
 
+function makeSestina(arr, scheme) {
+  let sestinaMatrix = [arr];  // start with our initial array of words
+  // console.log(sestinaMatrix);
+  // stop before the end, we don't need to close the cycle
+  for (let i = 0; i < scheme.length - 1; i++) {
+    new_stanza = [];
+    for (let ind of scheme) {
+      // use the last permutated array/stanza in the matrix
+      // to create the new one
+      new_stanza.push(sestinaMatrix[sestinaMatrix.length-1][ind]);
+    }
+    sestinaMatrix.push(new_stanza);
+  }
+  return sestinaMatrix;
+}
+
+function drawTitle() {
+  push();
+  textSize(40);
+  textStyle(ITALIC);
+  textFont("Georgia");
+  const msg = "A Sestina Generator"
+  const titleLine = lineHeight * 1.5;
+  text(msg, 10, titleLine);
+  line(10, titleLine + 5, 10 + textWidth(msg), titleLine + 5);
+  pop();
+}
+
+function errorOne() {
+    push();
+    background(252, 3, 227);
+    fill(255);
+    text("Heyyyy! Your word array and scheme must be of the same length!", 10, lineHeight);
+    text(`Your words: ${rhymeWords} | length: ${rhymeWords.length}`, 10, lineHeight * 2);
+    text(`Your scheme: ${scheme} | length: ${scheme.length}`, 10, lineHeight * 3);
+    pop();
+}
+
+function errorTwo() {
+    push();
+    background(250, 0, 142);
+    fill(255);
+    text("Heyyyy! Your scheme must contain all positions exactly once!", 10, lineHeight);
+    text(`Your scheme: ${scheme} | length: ${scheme.length}, size as a set: ${new Set(scheme).size}`, 10, lineHeight * 2);
+    pop();
 }
 
 // ----------------------------------------
 // THE UNDERBELLY
 // ----------------------------------------
-
-function makeSestina(arr, scheme) {
-  if (! arr.length === scheme.length) {
-    throw `${arr} and ${scheme} must be of the same length!`;
-  }
-  let sestinaMatrix = [arr];  // start with our initial array of words
-  // console.log(sestinaMatrix);
-  // stop before the end, we don't need to close the cycle
-  for (let i = 0; i < scheme.length - 1; i++) {
-    new_stanza = []
-    for (let ind of scheme) {
-       // use the last permutated array/stanza in the matrix
-       // to create the new one
-      new_stanza.push(sestinaMatrix[sestinaMatrix.length-1][ind]);
-    }
-    sestinaMatrix.push(new_stanza);
-  }
-  return sestinaMatrix
-}
 
 // sort an array but return the indices required for sorting (argsort)
 // https://stackoverflow.com/a/46622523
@@ -86,6 +141,10 @@ const argSort = (arr) => [...Array(arr.length).keys()]
   .reverse(); // sort ascending
 
 function drawScheme(scheme, x, y) {
+
+  push();
+
+  textFont("Courier New");
 
   line(10, y - lineHeight, (longestWidth + lineHeight) * scheme.length, y - lineHeight);
   text(`scheme:`, 10, y);
@@ -102,7 +161,6 @@ function drawScheme(scheme, x, y) {
   }
 
   textAdjustment = textAscent()/3; // I tweaked this to get to the right height
-  push();
   // noFill();
   const innerMargin = 15;
 
