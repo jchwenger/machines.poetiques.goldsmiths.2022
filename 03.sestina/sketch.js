@@ -85,13 +85,13 @@ function makeSestina(arr, scheme) {
   // console.log(sestinaMatrix);
   // stop before the end, we don't need to close the cycle
   for (let i = 0; i < scheme.length - 1; i++) {
-    new_stanza = [];
+    newStanza = [];
     for (let ind of scheme) {
       // use the last permutated array/stanza in the matrix
       // to create the new one
-      new_stanza.push(sestinaMatrix[sestinaMatrix.length-1][ind]);
+      newStanza.push(sestinaMatrix[sestinaMatrix.length-1][ind]);
     }
-    sestinaMatrix.push(new_stanza);
+    sestinaMatrix.push(newStanza);
   }
   return sestinaMatrix;
 }
