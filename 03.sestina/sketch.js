@@ -120,7 +120,7 @@ function errorOne() {
 
 function errorTwo() {
     push();
-    background(250, 0, 142);
+    background(255, 3, 70);
     fill(255);
     text("Heyyyy! Your scheme must contain all positions exactly once!", 10, lineHeight);
     text(`Your scheme: ${scheme} | length: ${scheme.length}, size as a set: ${new Set(scheme).size}`, 10, lineHeight * 2);
