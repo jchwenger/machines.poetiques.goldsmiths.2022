@@ -5,7 +5,7 @@ let rhymeWords, sestinaMatrix, scheme;
 let longestWidth;
 let lineHeight;
 
-let conditionOne, conditionTwp;
+let conditionOne, conditionTwo;
 
 function setup() {
 
@@ -22,15 +22,15 @@ function setup() {
   // that's the right-hand side of the equation, and I assign it to the variables
 
   // first condition
-  conditionOne = rhymeWords.length === scheme.length ? true : false
+  conditionOne = rhymeWords.length === scheme.length ? true : false;
   // console.log(`condition two: ${conditionOne}`);
 
   // second condition: does our scheme contain all elements?
-  // to check that, we turn the array into a set, which only contains
-  // unique elements, and compare its size to the length of our array!
-  // https://stackoverflow.com/a/28965567
-  // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
-  conditionTwo = scheme.length === (new Set(scheme)).size ? true : false
+  // to check that, we creat a copy of the scheme and sort it,
+  // then create a 'range' (0 to n) of the same length as our array,
+  // turn these two to strings, and check they are equal!
+  // https://stackoverflow.com/a/6230314
+  conditionTwo = [...scheme].sort().join("") === [...Array(scheme.length).keys()].join("") ? true : false;
   // console.log(`condition two: ${conditionTwo}`);
 
   sestinaMatrix = makeSestina(rhymeWords, scheme);
@@ -123,7 +123,7 @@ function errorTwo() {
     background(255, 3, 70);
     fill(255);
     text("Heyyyy! Your scheme must contain all positions exactly once!", 10, lineHeight);
-    text(`Your scheme: ${scheme} | length: ${scheme.length}, size as a set: ${new Set(scheme).size}`, 10, lineHeight * 2);
+    text(`Your scheme: ${scheme}`, 10, lineHeight * 2);
     pop();
 }
 
