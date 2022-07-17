@@ -16,6 +16,30 @@ function setup() {
   // each position must appear exactly once!
   scheme = [5, 0, 4, 1, 3, 2];
 
+  sestinaMatrix = makeSestina(rhymeWords, scheme);
+  // console.log(sestinaMatrix);
+
+  // for (let stanza of sestinaMatrix) {
+  //   console.log(stanza);
+  // }
+
+  textSize(25);
+  textWrap(WORD);
+  textFont("Helvetica");
+
+  // calculating the longest word for the design
+
+  // https://stackoverflow.com/a/46125820
+  const longest = rhymeWords.reduce((curr, next) => curr.length > next.length ? curr : next, "");
+  // console.log(`the longest word is ${longest}`);
+
+  // https://p5js.org/reference/#/p5/textWidth
+  longestWidth = textWidth(longest);
+
+  lineHeight = 40;
+
+  // error handling
+  // --------------
   // I am using the Ternary (Conditional) Operator syntax to establish the
   // conditions, it works like so:
   // condition ? [result if true] : [result if false]
@@ -32,26 +56,7 @@ function setup() {
   // https://stackoverflow.com/a/6230314
   conditionTwo = [...scheme].sort().join("") === [...Array(scheme.length).keys()].join("") ? true : false;
   // console.log(`condition two: ${conditionTwo}`);
-
-  sestinaMatrix = makeSestina(rhymeWords, scheme);
-  // console.log(sestinaMatrix);
-
-  // for (let stanza of sestinaMatrix) {
-  //   console.log(stanza);
-  // }
-
-  textSize(25);
-  textWrap(WORD);
-  textFont("Helvetica");
-
-  // https://stackoverflow.com/a/46125820
-  const longest = rhymeWords.reduce((curr, next) => curr.length > next.length ? curr : next, "");
-  // console.log(`the longest word is ${longest}`);
-
-  // https://p5js.org/reference/#/p5/textWidth
-  longestWidth = textWidth(longest);
-
-  lineHeight = 40;
+  // --------------
 
 }
 
@@ -63,6 +68,7 @@ function draw() {
   drawTitle();
 
   if (conditionOne && conditionTwo) {
+
     // draw the sestina stanzas
     for (let i = 0; i < sestinaMatrix.length; i++) {
       text(i+1, 10 + i*(longestWidth + lineHeight), lineHeight * 3);
@@ -72,6 +78,8 @@ function draw() {
     }
     // illustrating the algorithm
     drawScheme(scheme, ((longestWidth + lineHeight) * scheme.length)/2, scheme.length * lineHeight + lineHeight * 5);
+
+  // some error handling for the people
   } else if (!conditionOne) {
     errorOne();
   } else if (!conditionTwo) {
@@ -108,6 +116,14 @@ function drawTitle() {
   pop();
 }
 
+// ----------------------------------------
+// THE UNDERBELLY
+// ----------------------------------------
+
+// error handling
+
+
+// 1) not equal length
 function errorOne() {
     push();
     background(252, 3, 227);
@@ -118,6 +134,7 @@ function errorOne() {
     pop();
 }
 
+// 2) scheme isn't correctly formed
 function errorTwo() {
     push();
     background(255, 3, 70);
@@ -126,10 +143,6 @@ function errorTwo() {
     text(`Your scheme: ${scheme}`, 10, lineHeight * 2);
     pop();
 }
-
-// ----------------------------------------
-// THE UNDERBELLY
-// ----------------------------------------
 
 // sort an array but return the indices required for sorting (argsort)
 // https://stackoverflow.com/a/46622523
