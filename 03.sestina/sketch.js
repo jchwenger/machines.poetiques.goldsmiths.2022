@@ -1,5 +1,4 @@
 // define our variables
-let img;
 let rhymeWords, sestinaMatrix, scheme;
 
 let longestWidth;
