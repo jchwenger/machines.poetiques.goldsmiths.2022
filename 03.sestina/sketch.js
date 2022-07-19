@@ -187,6 +187,7 @@ function drawScheme(scheme, x, y) {
     const centre_y = Math.min(firstPoint, secondPoint) + pointsSpan/2 - textAdjustment;
     const arc_w_h = pointsSpan; // drawing circles: height == width
     const triCentre_y = secondPoint - textAdjustment; // the centre of the arrowhead
+    let start, stop;
 
     // using modulo logic to alternate left and right arcs
     if (i % 2 == 0) { // drawing on the right
