@@ -1,5 +1,5 @@
 // define our variables
-let rhymeWords, sestinaMatrix, scheme;
+let rhymeWords, scheme, sestinaMatrix;
 
 let longestWidth;
 let lineHeight;
