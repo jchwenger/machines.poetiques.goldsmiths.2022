@@ -175,7 +175,6 @@ function drawScheme(scheme, x, y) {
   }
 
   textAdjustment = textAscent()/3; // I tweaked this to get to the right height
-  // noFill();
   const innerMargin = 15;
 
   // draw the arrows
