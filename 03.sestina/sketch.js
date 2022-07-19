@@ -70,7 +70,9 @@ function draw() {
 
     // draw the sestina stanzas
     for (let i = 0; i < sestinaMatrix.length; i++) {
+      // the stanza number
       text(i+1, 10 + i*(longestWidth + lineHeight), lineHeight * 3);
+      // the stanza elements drawn vertically
       for (let j = 0; j < sestinaMatrix.length; j++) {
         text(sestinaMatrix[i][j], 10 + i*(longestWidth + lineHeight), lineHeight * 4 + j*lineHeight);
       }
