@@ -1,3 +1,19 @@
+// This sketch introduces the concepts of permutations and combinations
+
+// Suggestions:
+// - Permutations will yield all possible orderings of a set. Note that this
+// is very abstract, and could apply to all sorts of things. For instance, the
+// elements of the set could be different events in a narrative, performance,
+// or animation.
+// - Combinations are subsets, and the order of the elements does not matter.
+// This is equivalent to enumerating all the ways you can select a certain
+// number of elements from a set. K-combinations are only the selection of
+// subsets of a particular size k. This could be used if you want to combine
+// things together. For instance, if your set contains characters, combinations
+// could give you all possible ways of forming groups of characters. If your
+// set contains emotions, and you would like to create a piece combining three
+// together, you could look at all the k-combinations for k = 3.
+
 // define our variables
 let a, p;
 
@@ -19,20 +35,21 @@ function setup() {
   // p = k_combinator(a, 2); //  all k combinations (sets of length k). Order does not matter!
 
   // we prepare our canvas, text size, we don't cut words at the end of lines, and select a font
+  fill(255);
   textSize(25);
   textWrap(WORD);
+  textAlign(CENTER);
   textFont('Helvetica');
 
 }
 
 function draw() {
 
-  background(255);
+  background(245, 27, 241);
 
-  // ----------------------------------------
-  // 1) Shuffling
+  // display the results
   for (let i = 0; i < p.length; i++) {
-      text(p[i].join(', '), 10, 30 + i*30);
+      text(p[i].join(', '), width/2, 50 + i*30);
   }
 
 }
