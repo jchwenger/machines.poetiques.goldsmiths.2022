@@ -1,5 +1,6 @@
+const BLACK = '\033[0;30m', GREEN = '\033[1;32m', BLUE = '\033[0;34m';
+
 const permutator = (inputArr) => {
-  const BLACK = '\033[0;30m', GREEN = '\033[1;32m', BLUE = '\033[0;34m';
   let result = [];
   console.log('entering permutator, input array:', inputArr);
   const permute = (arr, m = [], s='  ') => {
