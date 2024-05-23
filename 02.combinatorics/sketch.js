@@ -27,9 +27,6 @@ function setup() {
 
   createCanvas(400, 400);
 
-  // our sentence
-  s1 = "Introducing textual systems through experimental French poetry";
-
   // reservoirs/slots
   // TODO: add more elements to these arrays
   y = ["Introducing"];
@@ -37,6 +34,9 @@ function setup() {
   t = ["systems"];
   e = ["experimental"];
   f = ["French"];
+
+  // our sentence: take the first element of each array
+  s1 = `${y[0]} ${z[0]} ${t[0]} through ${e[0]} ${f[0]} poetry`;
 
   // this is a javascript formatted string, aka template literal
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
