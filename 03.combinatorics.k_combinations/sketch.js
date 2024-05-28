@@ -52,12 +52,24 @@ function draw() {
     text(p[i].join(' or '), 50, 50 + i*30);
   }
 
+  // check if the user changed the number k
   mySelect.changed(reCombine);
+
+  // pesky little indication
+  push();
+  fill(255,0,0);
+  stroke(255);
+  textSize(13);
+  textAlign(RIGHT);
+  textFont('Courier New');
+  text('change me →', 795 + random()*2, 18 + random() * 2);
+  pop();
 
 }
 
 function reCombine() {
   // when the user selects something, 
+  // recompute the k combinations using the selected number!
   p = k_combinator(a, Number(mySelect.selected())); 
 }
 
