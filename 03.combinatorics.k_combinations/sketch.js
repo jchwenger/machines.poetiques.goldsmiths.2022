@@ -13,12 +13,12 @@ let a, p, mySelect;
 
 function setup() {
 
-  createCanvas(800, 400);
+  createCanvas(800, 350);
 
   // material for combinations
   // (also, you may have to increase the canvas size)
-  // a = ["happiness", "sadness", "excitement", "anger", "curiosity"];
-  a = ["entrance", "roof", "basement", "staircase", "kitchen"];
+  a = ["happiness", "sadness", "excitement", "anger", "curiosity"];
+  // a = ["entrance", "roof", "basement", "staircase", "kitchen"];
 
   p = k_combinator(a, 2); //  all k combinations (sets of length k). Order does not matter!
 
