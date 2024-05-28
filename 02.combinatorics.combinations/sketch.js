@@ -1,38 +1,25 @@
 // This sketch introduces the concepts of permutations and combinations
 
 // Suggestions:
-// - Permutations will yield all possible orderings of a set. Note that this
-// is very abstract, and could apply to all sorts of things. For instance, the
-// elements of the set could be different events in a narrative, performance,
-// or animation.
 // - Combinations are subsets, and the order of the elements does not matter.
 // This is equivalent to enumerating all the ways you can select a certain
-// number of elements from a set. K-combinations are only the selection of
-// subsets of a particular size k. This could be used if you want to combine
-// things together. For instance, if your set contains characters, combinations
-// could give you all possible ways of forming groups of characters. If your
-// set contains emotions, and you would like to create a piece combining three
-// together, you could look at all the k-combinations for k = 3.
+// number of elements from a set. 
 
 // define our variables
 let a, p;
 
 function setup() {
 
-  createCanvas(500, 800);
+  createCanvas(700, 1100);
 
   // material for permutations and combinations
   // BEWARE! The computation for this list grows very, very fast,
   // and your browser will quickly run out of resources
   // (also, you may have to increase the canvas size)
-  a = ["hello", "world", "goodbye", "universe"];
-  // a = ["entrance", "roof", "basement", "staircase"];
+  a = ["train ride", "stroll", "missed flight", "deep dive", "quick sprint"];
+  // a = ["banana", "strawberry", "cucumber", "porridge", "apple"];
 
-  // here three choices for permutations
-  // (use only one at a time!)
-  p = permutator(a); // all permuations: shuffling! Order matters!
-  // p = combinator(a); //  all combinations (sets of various lengths). Order does not matter!
-  // p = k_combinator(a, 2); //  all k combinations (sets of length k). Order does not matter!
+  p = combinator(a); //  all combinations (sets of various lengths). Order does not matter!
 
   // we prepare our canvas, text size, we don't cut words at the end of lines, and select a font
   fill(255);
@@ -45,11 +32,18 @@ function setup() {
 
 function draw() {
 
-  background(245, 27, 241);
+  background(22, 245, 141);
+
+  let currentLength = 1; // we start with single words
+  let topMargin = 50;
 
   // display the results
   for (let i = 0; i < p.length; i++) {
-      text(p[i].join(', '), width/2, 50 + i*30);
+    if (p[i].length > currentLength) {
+      currentLength++; // update our current length
+      topMargin += 30; // cheeky: update the top margin to add an empty line
+    }
+    text(p[i].join(' + '), width/2, topMargin + i*30);
   }
 
 }
