@@ -1,16 +1,18 @@
 # 'Machines Poétiques'
 ## Introducing textual systems through experimental French poetry
 
-Computational Arts MA Workshop, May 2022.
+Computational Arts MA Workshop, May 2022 (update in 2024).
 
 Iris Colomb & Jérémie Wenger
 
 ### Combinatorics
 
 For more information, pease see the sketches:
-- [01.combinatorics](01.combinatorics/sketch.js);
-- [02.combinatorics](02.combinatorics/sketch.js);
-- [03.sestina](03.sestina/sketch.js).
+- [01.combinatorics.permutations](01.combinatorics.permutations/sketch.js);
+- [02.combinatorics.combinations](02.combinatorics.combinations/sketch.js);
+- [03.combinatorics.k_combinations](03.combinatorics.k_combinations/sketch.js);
+- [04.combinatorics.reservoirs](04.combinatorics.reservoirs/sketch.js);
+- [05.sestina](05.sestina/sketch.js).
 
 ---
 
