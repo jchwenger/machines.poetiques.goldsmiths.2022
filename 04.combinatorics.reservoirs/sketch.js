@@ -51,7 +51,7 @@ function setup() {
 
 function draw() {
 
-  background(31, 240, 45);
+  background(69, 252, 18);
 
   // ----------------------------------------
   // 2) Slots / Reservoirs
